@@ -1,0 +1,14 @@
+﻿  stdafx.cpp
+d:\visual studio\windows\auto_tetris\auto_tetris\stdafx.cpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\visual studio\windows\auto_tetris\auto_tetris\stdafx.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\visual studio\windows\auto_tetris\auto_tetris\targetver.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  Tetris.cpp
+d:\visual studio\windows\auto_tetris\auto_tetris\tetris.cpp(184): warning C4018: “<”: 有符号/无符号不匹配
+  RectPosition.cpp
+  GridPosition.cpp
+  Grid.cpp
+  autotetris.cpp
+  正在生成代码...
+d:\visual studio\windows\auto_tetris\auto_tetris\grid.cpp(68): warning C4715: “Grid::lineStatus”: 不是所有的控件路径都返回值
+  auto_tetris.vcxproj -> D:\Visual Studio\windows\auto_tetris\Debug\auto_tetris.exe
+  auto_tetris.vcxproj -> D:\Visual Studio\windows\auto_tetris\Debug\auto_tetris.pdb (Partial PDB)

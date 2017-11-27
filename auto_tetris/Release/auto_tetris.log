@@ -1,0 +1,6 @@
+﻿  正在生成代码
+d:\visual studio\windows\auto_tetris\auto_tetris\grid.cpp(68): warning C4715: “Grid::lineStatus”: 不是所有的控件路径都返回值
+  All 304 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  auto_tetris.vcxproj -> D:\Visual Studio\windows\auto_tetris\Release\auto_tetris.exe
+  auto_tetris.vcxproj -> D:\Visual Studio\windows\auto_tetris\Release\auto_tetris.pdb (Full PDB)
