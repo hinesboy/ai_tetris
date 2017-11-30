@@ -12,7 +12,7 @@
 ![玩家模式](./img/common.gif)
 
 ### AI模式
-
+> [pierre-dellacheries算法详情](http://imake.ninja/el-tetris-an-improvement-on-pierre-dellacheries-algorithm)
 #### 预览
 
 > Gif制作工具略有卡顿 :)
