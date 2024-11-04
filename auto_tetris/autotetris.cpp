@@ -1,16 +1,16 @@
-// autotetris.cpp: ¶¨ÒåÓ¦ÓÃ³ÌĞòµÄÈë¿Úµã¡£
+// autotetris.cpp: å®šä¹‰åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ã€‚
 //
 
 #include "stdafx.h"
 #include "autotetris.h"
 #define MAX_LOADSTRING 100
 
-// È«¾Ö±äÁ¿: 
-HINSTANCE hInst;                                // µ±Ç°ÊµÀı
-WCHAR szTitle[MAX_LOADSTRING];                  // ±êÌâÀ¸ÎÄ±¾
-WCHAR szWindowClass[MAX_LOADSTRING];            // Ö÷´°¿ÚÀàÃû
+// å…¨å±€å˜é‡: 
+HINSTANCE hInst;                                // å½“å‰å®ä¾‹
+WCHAR szTitle[MAX_LOADSTRING];                  // æ ‡é¢˜æ æ–‡æœ¬
+WCHAR szWindowClass[MAX_LOADSTRING];            // ä¸»çª—å£ç±»å
 
-// ´Ë´úÂëÄ£¿éÖĞ°üº¬µÄº¯ÊıµÄÇ°ÏòÉùÃ÷: 
+// æ­¤ä»£ç æ¨¡å—ä¸­åŒ…å«çš„å‡½æ•°çš„å‰å‘å£°æ˜: 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -24,14 +24,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // TODO: ÔÚ´Ë·ÅÖÃ´úÂë¡£
+    // TODO: åœ¨æ­¤æ”¾ç½®ä»£ç ã€‚
 
-    // ³õÊ¼»¯È«¾Ö×Ö·û´®
+    // åˆå§‹åŒ–å…¨å±€å­—ç¬¦ä¸²
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_AUTOTETRIS, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
-    // Ö´ĞĞÓ¦ÓÃ³ÌĞò³õÊ¼»¯: 
+    // æ‰§è¡Œåº”ç”¨ç¨‹åºåˆå§‹åŒ–: 
     if (!InitInstance (hInstance, nCmdShow))
     {
         return FALSE;
@@ -41,7 +41,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // Ö÷ÏûÏ¢Ñ­»·: 
+    // ä¸»æ¶ˆæ¯å¾ªç¯: 
     while (GetMessage(&msg, nullptr, 0, 0))
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
@@ -55,9 +55,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 }
 
 //
-//  º¯Êı: MyRegisterClass()
+//  å‡½æ•°: MyRegisterClass()
 //
-//  Ä¿µÄ: ×¢²á´°¿ÚÀà¡£
+//  ç›®çš„: æ³¨å†Œçª—å£ç±»ã€‚
 //
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
@@ -81,18 +81,18 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 }
 
 //
-//   º¯Êı: InitInstance(HINSTANCE, int)
+//   å‡½æ•°: InitInstance(HINSTANCE, int)
 //
-//   Ä¿µÄ: ±£´æÊµÀı¾ä±ú²¢´´½¨Ö÷´°¿Ú
+//   ç›®çš„: ä¿å­˜å®ä¾‹å¥æŸ„å¹¶åˆ›å»ºä¸»çª—å£
 //
-//   ×¢ÊÍ: 
+//   æ³¨é‡Š: 
 //
-//        ÔÚ´Ëº¯ÊıÖĞ£¬ÎÒÃÇÔÚÈ«¾Ö±äÁ¿ÖĞ±£´æÊµÀı¾ä±ú²¢
-//        ´´½¨ºÍÏÔÊ¾Ö÷³ÌĞò´°¿Ú¡£
+//        åœ¨æ­¤å‡½æ•°ä¸­ï¼Œæˆ‘ä»¬åœ¨å…¨å±€å˜é‡ä¸­ä¿å­˜å®ä¾‹å¥æŸ„å¹¶
+//        åˆ›å»ºå’Œæ˜¾ç¤ºä¸»ç¨‹åºçª—å£ã€‚
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance; // ½«ÊµÀı¾ä±ú´æ´¢ÔÚÈ«¾Ö±äÁ¿ÖĞ
+   hInst = hInstance; // å°†å®ä¾‹å¥æŸ„å­˜å‚¨åœ¨å…¨å±€å˜é‡ä¸­
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_BORDER | WS_SYSMENU,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
@@ -107,94 +107,109 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    return TRUE;
 }
-VOID CALLBACK TimeProc(HWND hWnd, UINT message, UINT idTimer, DWORD dwTime)
-{
-	// ¶¨Ê±Æ÷
-	checkTetris(hWnd,VK_DOWN);
+VOID CALLBACK TimeProc(HWND hWnd, UINT message, UINT idTimer, DWORD dwTime) {
+    // å®šæ—¶å™¨è§¦å‘æ—¶ï¼Œæ¨¡æ‹ŸæŒ‰ä¸‹ VK_DOWN é”®ï¼Œä½¿æ–¹å—ä¸‹è½
+    checkTetris(hWnd, VK_DOWN);
+
+    // æ£€æŸ¥æ–¹å—æ˜¯å¦å·²ç»åˆ°è¾¾åº•éƒ¨ï¼Œå¦‚æœæ˜¯ï¼Œåˆ™åœæ­¢å®šæ—¶å™¨
+    if (isTetrisAtBottom()) {
+        KillTimer(hWnd, idTimer);
+        // å¯ä»¥åœ¨è¿™é‡Œæ·»åŠ æ¸¸æˆç»“æŸçš„é€»è¾‘
+        MessageBox(hWnd, TEXT("æ¸¸æˆç»“æŸï¼"), TEXT("ä¿„ç½—æ–¯æ–¹å—"), MB_OK);
+    }
 }
-// º¯Êı£º Æô¶¯ÓÎÏ·
+
+// å‡è®¾çš„ isTetrisAtBottom å‡½æ•°ï¼Œä½ éœ€è¦æ ¹æ®ä½ çš„æ¸¸æˆé€»è¾‘å®ç°å®ƒ
+BOOL isTetrisAtBottom() {
+    // è¿™é‡Œçš„é€»è¾‘å–å†³äºä½ çš„æ¸¸æˆçŠ¶æ€å’Œæ–¹å—ä½ç½®çš„å®ç°
+    // ä¾‹å¦‚ï¼Œæ£€æŸ¥æ–¹å—çš„åº•éƒ¨æ˜¯å¦å·²ç»æ¥è§¦åˆ°äº†æ¸¸æˆåŒºåŸŸçš„åº•éƒ¨
+    // å¦‚æœæ˜¯ï¼Œè¿”å› TRUEï¼Œå¦åˆ™è¿”å› FALSE
+    // ä»¥ä¸‹æ˜¯ä¸€ä¸ªç¤ºä¾‹æ¡ä»¶ï¼Œä½ éœ€è¦æ ¹æ®ä½ çš„æ¸¸æˆé€»è¾‘æ¥è°ƒæ•´
+    return (curTetris.positions[0].y >= GAME_HEIGHT - 1); // å‡è®¾ GAME_HEIGHT æ˜¯æ¸¸æˆåŒºåŸŸçš„é«˜åº¦
+}
+// å‡½æ•°ï¼š å¯åŠ¨æ¸¸æˆ
 VOID InitGame(HWND hWnd)
 {
-	// ³õÊ¼»¯²ÎÊı
+	// åˆå§‹åŒ–å‚æ•°
 	btCurGrid.init(PAINT_YNODE,GAME_XNODE);
 	iInterval = AI_SWITCH ? AI_DEFAULT_INTERVAL : DEFAULT_INTERVAL;
 	iCurDif = SIMPLE;
 	iCurScore = 0;
-	// Éú³ÉÊ×¸öÏÂÂäÍ¼ĞÎ
+	// ç”Ÿæˆé¦–ä¸ªä¸‹è½å›¾å½¢
 	curTetris.random();
-	// Éú³ÉÏÂÒ»¸öÏÂÂäÍ¼ĞÎ
+	// ç”Ÿæˆä¸‹ä¸€ä¸ªä¸‹è½å›¾å½¢
 	nextTetris.random();
-	// Æô¶¯¶¨Ê±Æ÷
+	// å¯åŠ¨å®šæ—¶å™¨
 	KillTimer(hWnd, TIMER_ID);
 
 	SetTimer(hWnd, TIMER_ID, iInterval, TimeProc);
 
 }
 
-// º¯Êı£º ³õÊ¼»¯´°ÌåµÄÎ»ÖÃºÍ´óĞ¡
+// å‡½æ•°ï¼š åˆå§‹åŒ–çª—ä½“çš„ä½ç½®å’Œå¤§å°
 VOID InitWndPostionSize(HWND hWnd)
 {
 	RECT rect;
 	int nWinX, nWinY, nClientX, nClientY;
-	//»ñÈ¡´°¿Ú´óĞ¡  
+	//è·å–çª—å£å¤§å°  
 	GetWindowRect(hWnd, &rect);
 	nWinX = rect.right - rect.left;
 	nWinY = rect.bottom - rect.top;
-	//»ñÈ¡¿Í»§Çø´óĞ¡  
+	//è·å–å®¢æˆ·åŒºå¤§å°  
 	GetClientRect(hWnd, &rect);
 	nClientX = rect.right - rect.left;
 	nClientY = rect.bottom - rect.top;
 
-	// »ñÈ¡µ±Ç°ÆÁÄ»µÄ¿í¸ß£¬½«´°¿Ú·ÅÖÃÖĞĞÄÇøÓò
+	// è·å–å½“å‰å±å¹•çš„å®½é«˜ï¼Œå°†çª—å£æ”¾ç½®ä¸­å¿ƒåŒºåŸŸ
 	UINT iScreenX = GetSystemMetrics(SM_CXSCREEN);
 	UINT iScreenY = GetSystemMetrics(SM_CYSCREEN);
-	// µ÷Õû´°¿ÚÎ»ÖÃÓë´óĞ¡
+	// è°ƒæ•´çª—å£ä½ç½®ä¸å¤§å°
 	MoveWindow(hWnd, (iScreenX - PAINT_WIDTH)/2, (iScreenY - PAINT_HEIGHT)/3, PAINT_WIDTH + nWinX - nClientX, PAINT_HEIGHT + nWinY - nClientY, true);
 }
 
-// º¯Êı£º »æÖÆ±³¾°
+// å‡½æ•°ï¼š ç»˜åˆ¶èƒŒæ™¯
 VOID DrawBackGround(HDC hdc)
 {
 	HPEN hPenNull = (HPEN)GetStockObject(NULL_PEN);         // HPEN NULL
 	HBRUSH hBrushGray = (HBRUSH)GetStockObject(GRAY_BRUSH); // hBRUSH GRAY
 	SelectObject(hdc,hPenNull);
-	SelectObject(hdc, hBrushGray); // ±³¾°ÑÕÉ«	
-	// ÓÎÏ·ÇøÓò´óĞ¡ (HDC,×óÉÏ½ÇX,×óÉÏ½ÇY£¬ÓÒÏÂ½ÇX£¬ÓÒÏÂ½ÇY)
+	SelectObject(hdc, hBrushGray); // èƒŒæ™¯é¢œè‰²	
+	// æ¸¸æˆåŒºåŸŸå¤§å° (HDC,å·¦ä¸Šè§’X,å·¦ä¸Šè§’Yï¼Œå³ä¸‹è§’Xï¼Œå³ä¸‹è§’Y)
 	Rectangle(hdc, GAME_POSITION.iLeftX, GAME_POSITION.iLeftY, GAME_POSITION.iRightX, GAME_POSITION.iRightY);
-	// ĞÅÏ¢Çø´óĞ¡
+	// ä¿¡æ¯åŒºå¤§å°
 	Rectangle(hdc, INFO_POSITION.iLeftX, INFO_POSITION.iLeftY, INFO_POSITION.iRightX, INFO_POSITION.iRightY);
 	DeleteObject(hBrushGray);
 	DeleteObject(hPenNull);
 
 }
-// º¯Êı£º »æÖÆĞÅÏ¢À¸
+// å‡½æ•°ï¼š ç»˜åˆ¶ä¿¡æ¯æ 
 VOID DrawInfo(HDC hdc)
 {
-	// ÏÂÒ»¸öÏÂÂä·½¿é
+	// ä¸‹ä¸€ä¸ªä¸‹è½æ–¹å—
 	RECT rect;
-	HFONT hFont = CreateFont(23, 0, 0, 0, FW_THIN, 0, 0, 0, UNICODE, 0, 0, 0, 0, L"Î¢ÈíÑÅºÚ");
+	HFONT hFont = CreateFont(23, 0, 0, 0, FW_THIN, 0, 0, 0, UNICODE, 0, 0, 0, 0, L"å¾®è½¯é›…é»‘");
 	SelectObject(hdc, hFont);
 	SetBkMode(hdc, TRANSPARENT);
 	SetBkColor(hdc, RGB(255,255,0));
 	
 	NEXT_FONT_POSITION.setRect(rect);
-	DrawText(hdc, TEXT("ÏÂÒ»¸ö"), _tcslen(TEXT("ÏÂÒ»¸ö")), &rect , 0);
+	DrawText(hdc, TEXT("ä¸‹ä¸€ä¸ª"), _tcslen(TEXT("ä¸‹ä¸€ä¸ª")), &rect , 0);
 
 	LEVEL_FONT_POSITION.setRect(rect);
 	TCHAR tcDif[10];
-	LPCTSTR lpctDif = TEXT("ÄÑ¶È: %d");
+	LPCTSTR lpctDif = TEXT("éš¾åº¦: %d");
 	wsprintf(tcDif, lpctDif , iCurDif);
 	DrawText(hdc, tcDif, _tcslen(tcDif), &rect , 0);
 
 	SCORE_FONT_POSITION.setRect(rect);
 	TCHAR tcScore[10];
-	LPCTSTR lpctScore = TEXT("µÃ·Ö: %d");
+	LPCTSTR lpctScore = TEXT("å¾—åˆ†: %d");
 	wsprintf(tcScore, lpctScore, iCurScore);
 	DrawText(hdc, tcScore, _tcslen(tcScore), &rect , 0);
 
 	DeleteObject(hFont);
 }
-// ¸ù¾İ×ø±ê»ñÈ¡µ±Ç°½ÚµãÎ»ÖÃ
+// æ ¹æ®åæ ‡è·å–å½“å‰èŠ‚ç‚¹ä½ç½®
 RectPosition getRectPosition(BYTE x, BYTE y)
 {
 	RectPosition rectPs;
@@ -204,34 +219,34 @@ RectPosition getRectPosition(BYTE x, BYTE y)
 	rectPs.iRightY = rectPs.iLeftY + NODE_SIZE;
 	return rectPs;
 }
-// º¯Êı£º»æÖÆ·½¿é
+// å‡½æ•°ï¼šç»˜åˆ¶æ–¹å—
 VOID DrawTetris(HDC hdc)
 {
 	RectPosition ps;
 	HPEN hPen = (HPEN)GetStockObject(NULL_PEN);
 	SelectObject(hdc, hPen);
-	// »æÖÆGameÇøÓò
+	// ç»˜åˆ¶GameåŒºåŸŸ
 	for (int i =0; i< PAINT_YNODE; i++)
 	{
 		for (int j =0; j< GAME_XNODE; j++)
 		{
 			if (btCurGrid[i][j] > 0)
 			{
-				// »æÖÆµ±Ç°½Úµã
+				// ç»˜åˆ¶å½“å‰èŠ‚ç‚¹
 				SelectObject(hdc, getHbrush(btCurGrid[i][j]));
 				ps = getRectPosition(i, j);
 				Rectangle(hdc, ps.iLeftX, ps.iLeftY, ps.iRightX, ps.iRightY);
 			}
 		}
 	}
-	// »æÖÆÕıÔÚÏÂÂäÍ¼ĞÎ
+	// ç»˜åˆ¶æ­£åœ¨ä¸‹è½å›¾å½¢
 	SelectObject(hdc, getHbrush(curTetris.color));
 	for (int i =0;i < 4; i++)
 	{
 		ps = getRectPosition(curTetris.positions[i].x , curTetris.positions[i].y);
 		Rectangle(hdc, ps.iLeftX, ps.iLeftY, ps.iRightX, ps.iRightY);
 	}
-	// »æÖÆÏÂÒ»´ÎÏÂÂäÍ¼ĞÎ
+	// ç»˜åˆ¶ä¸‹ä¸€æ¬¡ä¸‹è½å›¾å½¢
 	int move_x = 8 * NODE_SIZE + BLOCK_SIZE;
 	int move_y = 2 * NODE_SIZE + BLOCK_SIZE;
 	SelectObject(hdc, getHbrush(nextTetris.color));
@@ -241,14 +256,14 @@ VOID DrawTetris(HDC hdc)
 		Rectangle(hdc, ps.iLeftX + move_x, ps.iLeftY + move_y, ps.iRightX+ move_x, ps.iRightY +move_y);
 	}
 }
-// µ÷ÕûÓÎÏ·ÄÑ¶È
+// è°ƒæ•´æ¸¸æˆéš¾åº¦
 VOID setLevel(HWND hWnd)
 {
 	BOOL SimpleToGeneral = iCurDif < GENERAL && iCurScore >= GENERAL_SCORE;
 	BOOL GeneralToDifficult = iCurDif < DIFFICULT && iCurScore >= DIFFICULT_SCORE;
 	BOOL DifficultToEst = iCurDif < DIFFICULTEST && iCurScore >= DIFFICULTEST_SCORE;
 	
-	// ÉèÖÃÄÑ¶È
+	// è®¾ç½®éš¾åº¦
 	if (SimpleToGeneral || GeneralToDifficult || DifficultToEst)
 	{
 		iCurDif ++;
@@ -257,25 +272,25 @@ VOID setLevel(HWND hWnd)
 		SetTimer(hWnd , TIMER_ID, iInterval , TimeProc);
 	}
 }
-// ÏÂÂäÍê³É
+// ä¸‹è½å®Œæˆ
 VOID finishDown(HWND hWnd)
 {
-	// ¸üĞÂbtCurGridµ±Ç°½çÃæÊı×é
+	// æ›´æ–°btCurGridå½“å‰ç•Œé¢æ•°ç»„
 	btCurGrid.addCurTerisToGrid(curTetris);
-	// ¸üĞÂÏÂÂä·½¿é£¬ÖØĞÂÉú³ÉnextTetris
+	// æ›´æ–°ä¸‹è½æ–¹å—ï¼Œé‡æ–°ç”ŸæˆnextTetris
 	curTetris = nextTetris;
 	nextTetris.random();
-	// Ïû³ı
+	// æ¶ˆé™¤
 	iCurScore += btCurGrid.clearLine();
-	// ÅĞ¶ÏÉú³ÉÎ»ÖÃÊÇ·ñ±»Õ¼ÓÃ
+	// åˆ¤æ–­ç”Ÿæˆä½ç½®æ˜¯å¦è¢«å ç”¨
 	if (btCurGrid.isExist(curTetris))
 	{
-		// TODO ÓÎÏ·½áÊø
+		// TODO æ¸¸æˆç»“æŸ
 		KillTimer(hWnd, TIMER_ID);
-		MessageBox(hWnd, TEXT("ÓÎÏ·½áÊø"),TEXT("ÏûÏ¢"),MB_OK);
+		MessageBox(hWnd, TEXT("æ¸¸æˆç»“æŸ"),TEXT("æ¶ˆæ¯"),MB_OK);
 		return;
 	}
-	// µ÷ÕûÓÎÏ·ÄÑ¶È(aiÄ£Ê½²»ĞèÒª)
+	// è°ƒæ•´æ¸¸æˆéš¾åº¦(aiæ¨¡å¼ä¸éœ€è¦)
 	if (!AI_SWITCH)
 	{
 		setLevel(hWnd);
@@ -284,67 +299,67 @@ VOID finishDown(HWND hWnd)
 	else
 	{
 		InvalidateRect(hWnd, NULL, TRUE);
-		// Èç¹ûÎªAIÄ£Ê½£¬¼ÌĞø¼ÆËã
+		// å¦‚æœä¸ºAIæ¨¡å¼ï¼Œç»§ç»­è®¡ç®—
 		AIHandle(hWnd);
 	}
 }
 
-// ¼ì²éÍ¼ĞÎÏÂÂäÊÇ·ñÔ½½ç/Íê³É / Ïû³ı
+// æ£€æŸ¥å›¾å½¢ä¸‹è½æ˜¯å¦è¶Šç•Œ/å®Œæˆ / æ¶ˆé™¤
 VOID checkTetris(HWND hWnd, INT type)
 {
 	int maxX , minX , maxY , minY;
 	Tetris temp = curTetris;
 	switch (type)
 	{
-		case VK_LEFT: // ×ó
+		case VK_LEFT: // å·¦
 			temp.left();
 			break;
-		case VK_RIGHT: // ÓÒ
+		case VK_RIGHT: // å³
 			temp.right();
 			break;
-		case VK_UP: // ÉÏ
+		case VK_UP: // ä¸Š
 			temp.rotate();
 			break;
-		case VK_DOWN: // ÏÂ(²úÉú¿ìËÙÏÂ½µĞ§¹û)
+		case VK_DOWN: // ä¸‹(äº§ç”Ÿå¿«é€Ÿä¸‹é™æ•ˆæœ)
 			temp.down(); 
 			break;
 	}
 	temp.getMaxMin(minX , maxX , minY , maxY);
 
-	// ÅĞ¶ÏÊÇ·ñÔ½½ç
+	// åˆ¤æ–­æ˜¯å¦è¶Šç•Œ
 	if (maxX > 19)
 	{
-		// ´¥Åöµ×²¿£¬ÏÂÂä½áÊø
+		// è§¦ç¢°åº•éƒ¨ï¼Œä¸‹è½ç»“æŸ
 		finishDown(hWnd);
 		return;
 	}
 	if (minX < 0 || maxY > 9 || minY < 0)
 	{
-		// ´¥Åö×óÓÒ±ß½ç
+		// è§¦ç¢°å·¦å³è¾¹ç•Œ
 		return;
 	}
-	// ÅĞ¶ÏÎ»ÖÃÊÇ·ñ±»Õ¼ÓÃ
+	// åˆ¤æ–­ä½ç½®æ˜¯å¦è¢«å ç”¨
 	if (btCurGrid.isExist(temp))
 	{
 		if (type == VK_DOWN)
 		{
-			// ÏÂÂäµ½ÒÑ´æÔÚ½ÚµãÉÏ·½£¬ÏÂÂä½áÊø
+			// ä¸‹è½åˆ°å·²å­˜åœ¨èŠ‚ç‚¹ä¸Šæ–¹ï¼Œä¸‹è½ç»“æŸ
 			finishDown(hWnd);
 		}
 		return;
 	}
-	// ²Ù×÷ÔÊĞí
+	// æ“ä½œå…è®¸
 	curTetris = temp;
 	InvalidateRect(hWnd, NULL, TRUE);
 }
 //
-//  º¯Êı: WndProc(HWND, UINT, WPARAM, LPARAM)
+//  å‡½æ•°: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
-//  Ä¿µÄ:    ´¦ÀíÖ÷´°¿ÚµÄÏûÏ¢¡£
+//  ç›®çš„:    å¤„ç†ä¸»çª—å£çš„æ¶ˆæ¯ã€‚
 //
-//  WM_COMMAND  - ´¦ÀíÓ¦ÓÃ³ÌĞò²Ëµ¥
-//  WM_PAINT    - »æÖÆÖ÷´°¿Ú
-//  WM_DESTROY  - ·¢ËÍÍË³öÏûÏ¢²¢·µ»Ø
+//  WM_COMMAND  - å¤„ç†åº”ç”¨ç¨‹åºèœå•
+//  WM_PAINT    - ç»˜åˆ¶ä¸»çª—å£
+//  WM_DESTROY  - å‘é€é€€å‡ºæ¶ˆæ¯å¹¶è¿”å›
 //
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -353,15 +368,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
 	case WM_CREATE:
 		{
-			// ³õÊ¼»¯´°ÌåµÄÎ»ÖÃºÍ´óĞ¡
+			// åˆå§‹åŒ–çª—ä½“çš„ä½ç½®å’Œå¤§å°
 			InitWndPostionSize(hWnd);
-			// Æô¶¯ÓÎÏ·
+			// å¯åŠ¨æ¸¸æˆ
 			InitGame(hWnd);
 		}
 		break;
 	case WM_KEYDOWN:
 		{
-			if (!AI_SWITCH) // ÔÚ×Ô¶¯ÓÎÏ·Ä£Ê½ÏÂ ¼üÅÌ²»¿ÉÓÃ
+			if (!AI_SWITCH) // åœ¨è‡ªåŠ¨æ¸¸æˆæ¨¡å¼ä¸‹ é”®ç›˜ä¸å¯ç”¨
 			{
 				checkTetris(hWnd,wParam);
 			}
@@ -370,7 +385,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
-            // ·ÖÎö²Ëµ¥Ñ¡Ôñ: 
+            // åˆ†æèœå•é€‰æ‹©: 
             switch (wmId)
             {
 			case IDM_COMMON:
@@ -397,16 +412,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-			// »æÖÆ±³¾°
+			// ç»˜åˆ¶èƒŒæ™¯
 			DrawBackGround(hdc);
-			// »æÖÆĞÅÏ¢À¸
+			// ç»˜åˆ¶ä¿¡æ¯æ 
 			DrawInfo(hdc);
-			// »æÖÆÍ¼ĞÎ
+			// ç»˜åˆ¶å›¾å½¢
 			DrawTetris(hdc);
             EndPaint(hWnd, &ps);
         }
         break;
     case WM_DESTROY:
+        // æ¸…ç†å®šæ—¶å™¨
+        KillTimer(hWnd, TIMER_ID);
+        KillTimer(hWnd, AI_TIMER_ID);
         PostQuitMessage(0);
         break;
     default:
@@ -415,7 +433,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-// ¡°¹ØÓÚ¡±¿òµÄÏûÏ¢´¦Àí³ÌĞò¡£
+// â€œå…³äºâ€æ¡†çš„æ¶ˆæ¯å¤„ç†ç¨‹åºã€‚
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);
@@ -435,36 +453,36 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     return (INT_PTR)FALSE;
 }
 
-// º¯Êı£ºÆô¶¯AIÄ£Ê½
+// å‡½æ•°ï¼šå¯åŠ¨AIæ¨¡å¼
 VOID AIHandle(HWND hWnd)
 {
-	// Pierre Dellacherie »ñÈ¡×î¼ÑÂä½Åµã
+	// Pierre Dellacherie è·å–æœ€ä½³è½è„šç‚¹
 	getBestPosition();
-	// ×Ô¶¯ÒÆ¶¯µ½×î¼ÑÎ»ÖÃ²¢½áÊøÏÂÂä
+	// è‡ªåŠ¨ç§»åŠ¨åˆ°æœ€ä½³ä½ç½®å¹¶ç»“æŸä¸‹è½
 	aiMoveTetris(hWnd);
 }
-// »ñÈ¡×î¼ÑÆÀ·Ö¼°ÆäÎ»ÖÃ
+// è·å–æœ€ä½³è¯„åˆ†åŠå…¶ä½ç½®
 VOID getBestPosition()
 {
 	bestScore = 0x80000000;
 	int maxX , minX , maxY , minY;
 	algoTetris = curTetris;	
 	Tetris temp;
-	//»ñÈ¡Íø¸ñË®Æ½Ãæ
+	//è·å–ç½‘æ ¼æ°´å¹³é¢
 	getHorizonIndex(); 
-	// Í¼ĞÎÓĞËÄÖÖ×´Ì¬
+	// å›¾å½¢æœ‰å››ç§çŠ¶æ€
 	for (int i = 0 ; i < 4 ; i ++)
 	{
 		algoTetris.getMaxMin(minX , maxX , minY , maxY);
-		int num = 10 - (maxY - minY); // Ã¿´Î±ä»»²úÉúnumÖÖÇé¿ö
+		int num = 10 - (maxY - minY); // æ¯æ¬¡å˜æ¢äº§ç”Ÿnumç§æƒ…å†µ
 		for (int j = 0 ; j < num ; j++)
 		{
-			// »¹Ô­Íø¸ñ
+			// è¿˜åŸç½‘æ ¼
 			algoGrid = btCurGrid; 
 			temp = algoTetris;
-			// ½«base_tetris·Åµ½algoGridµÄÖ¸¶¨Î»ÖÃÖĞ, ·µ»ØĞèÒªÏò×óÒÆ¶¯´ÎÊı
+			// å°†base_tetrisæ”¾åˆ°algoGridçš„æŒ‡å®šä½ç½®ä¸­, è¿”å›éœ€è¦å‘å·¦ç§»åŠ¨æ¬¡æ•°
 			int moveLeft = putTetrisToGrid(j);
-			// ÆÀ·Ö
+			// è¯„åˆ†
 			int score = Dellacherie();
 			if (score > bestScore)
 			{
@@ -473,7 +491,7 @@ VOID getBestPosition()
 				needRotate = i;
 				needMoveLeft = moveLeft;
 			}
-			// »¹Ô­ algoTetri
+			// è¿˜åŸ algoTetri
 			algoTetris = temp;
 		}
 		algoTetris.rotate();
@@ -483,57 +501,57 @@ VOID CALLBACK AITimeProc(HWND hWnd, UINT message, UINT idTimer, DWORD dwTime)
 {
 	if (needRotate)
 	{
-		// ÏÈ±äĞÎ
+		// å…ˆå˜å½¢
 		needRotate--;
 		curTetris.rotate();
 	} else if (needMoveLeft > 0)
 	{
-		// ×óÒÆ¶¯
+		// å·¦ç§»åŠ¨
 		curTetris.left();
 		needMoveLeft--;
 	}
 	else if(needMoveLeft < 0)
 	{
-		// ÓÒÒÆ¶¯
+		// å³ç§»åŠ¨
 		curTetris.right();
 		needMoveLeft++;
 	}
-	// ÖØĞÂ»æÖÆ½çÃæ
+	// é‡æ–°ç»˜åˆ¶ç•Œé¢
 	InvalidateRect(hWnd, NULL, TRUE);
-	// ½áÊø¶¨Ê±Æ÷
+	// ç»“æŸå®šæ—¶å™¨
 	if (needRotate == 0 && needMoveLeft == 0)
 	{
 		KillTimer(hWnd, AI_TIMER_ID);
 	}
 }
-// ¿ìËÙ²âÊÔÓÃ¶¨Ê±Æ÷
+// å¿«é€Ÿæµ‹è¯•ç”¨å®šæ—¶å™¨
 VOID CALLBACK TESTTimeProc(HWND hWnd, UINT message, UINT idTimer, DWORD dwTime)
 {
-	// ¸üĞÂbtCurGridµ±Ç°½çÃæÊı×é
+	// æ›´æ–°btCurGridå½“å‰ç•Œé¢æ•°ç»„
 	btCurGrid.addCurTerisToGrid(bestTetris);
-	// ¸üĞÂÏÂÂä·½¿é£¬ÖØĞÂÉú³ÉnextTetris
+	// æ›´æ–°ä¸‹è½æ–¹å—ï¼Œé‡æ–°ç”ŸæˆnextTetris
 	curTetris = nextTetris;
 	nextTetris.random();
-	// Ïû³ı
+	// æ¶ˆé™¤
 	iCurScore += btCurGrid.clearLine();
-	// ÅĞ¶ÏÉú³ÉÎ»ÖÃÊÇ·ñ±»Õ¼ÓÃ
+	// åˆ¤æ–­ç”Ÿæˆä½ç½®æ˜¯å¦è¢«å ç”¨
 	if (btCurGrid.isExist(curTetris))
 	{
-		// TODO ÓÎÏ·½áÊø
+		// TODO æ¸¸æˆç»“æŸ
 		KillTimer(hWnd, 3);
-		MessageBox(hWnd, TEXT("ÓÎÏ·½áÊø"),TEXT("ÏûÏ¢"),MB_OK);
+		MessageBox(hWnd, TEXT("æ¸¸æˆç»“æŸ"),TEXT("æ¶ˆæ¯"),MB_OK);
 		return;
 	}
-	// Èç¹ûÎªAIÄ£Ê½£¬¼ÌĞø¼ÆËã
+	// å¦‚æœä¸ºAIæ¨¡å¼ï¼Œç»§ç»­è®¡ç®—
 	AIHandle(hWnd);
 }
-// ½«·½¿éÒÆ¶¯µ½×î¼ÑÎ»ÖÃ
+// å°†æ–¹å—ç§»åŠ¨åˆ°æœ€ä½³ä½ç½®
 VOID aiMoveTetris(HWND hWnd)
 {
 	SetTimer(hWnd, AI_TIMER_ID, iInterval / 5 ,AITimeProc);
-	// SetTimer(hWnd, 3, 0 ,TESTTimeProc); // ¿ìËÙ²âÊÔÊ¹ÓÃ
+	// SetTimer(hWnd, 3, 0 ,TESTTimeProc); // å¿«é€Ÿæµ‹è¯•ä½¿ç”¨
 }
-// »ñÈ¡Íø¸ñË®Æ½Ïß
+// è·å–ç½‘æ ¼æ°´å¹³çº¿
 VOID getHorizonIndex()
 {
 	for (int i = 0 ; i < GAME_XNODE; i ++)
@@ -555,11 +573,11 @@ VOID getHorizonIndex()
 }
 INT putTetrisToGrid(int col)
 {
-	int left_bottom_index = algoTetris.getLeftBottom(); // »ñÈ¡×î×óÏÂ½ÇµÄÔªËØÏÂ±ê
+	int left_bottom_index = algoTetris.getLeftBottom(); // è·å–æœ€å·¦ä¸‹è§’çš„å…ƒç´ ä¸‹æ ‡
 	
-	int maxDistanceRow = horizonIndex[col] - algoTetris.positions[left_bottom_index].x; // ĞèÒªÏòÏÂÒÆ¶¯µÄ¾àÀë
-	int maxDistanceCol = algoTetris.positions[left_bottom_index].y - col; // ĞèÒªÏò×óÒÆ¶¯µÄ¾àÀë
-	// µ÷ÕûÏòÏÂÒÆ¶¯¾àÀë
+	int maxDistanceRow = horizonIndex[col] - algoTetris.positions[left_bottom_index].x; // éœ€è¦å‘ä¸‹ç§»åŠ¨çš„è·ç¦»
+	int maxDistanceCol = algoTetris.positions[left_bottom_index].y - col; // éœ€è¦å‘å·¦ç§»åŠ¨çš„è·ç¦»
+	// è°ƒæ•´å‘ä¸‹ç§»åŠ¨è·ç¦»
 	for (int j = 0 ; j < 4 ; j ++)
 	{
 		if (j != left_bottom_index)
@@ -572,7 +590,7 @@ INT putTetrisToGrid(int col)
 			}
 		}
 	}
-	// ½«algoTetrisÒÆ¶¯µ½Ö¸¶¨Î»Î»ÖÃ
+	// å°†algoTetrisç§»åŠ¨åˆ°æŒ‡å®šä½ä½ç½®
 	for(int j = 0 ; j < 4 ; j ++)
 	{
 		algoTetris.positions[j].x += maxDistanceRow;
@@ -581,7 +599,7 @@ INT putTetrisToGrid(int col)
 	}
 	return maxDistanceCol;
 }
-// AIÆÀ·ÖËã·¨
+// AIè¯„åˆ†ç®—æ³•
 INT Dellacherie()
 {
 	INT lh_score, re_score, rt_score, ct_score, nh_score, ws_score;
@@ -593,14 +611,14 @@ INT Dellacherie()
 	ws_score = getWS();
 	return lh_score * LH_WEIGHT + re_score * RE_WEIGHT + rt_score * RT_WEIGHT + ct_score * CT_WEIGHT + nh_score * NH_WEIGHT + ws_score * WS_WEIGHT;
 }
-// ¸ß¶ÈÆÀ·Ö
+// é«˜åº¦è¯„åˆ†
 INT getLH() 
 {
 	int maxX, minX, maxY, minY;
 	algoTetris.getMaxMin(minX, maxX, minY, maxY);
 	return PAINT_YNODE - maxX;
 } 
-// Ïû³ıĞĞ*¹±Ï×·½¿éÊıÆÀ·Ö
+// æ¶ˆé™¤è¡Œ*è´¡çŒ®æ–¹å—æ•°è¯„åˆ†
 INT getRE() 
 {	
 	int  status , clearline = 0, cells = 0;
@@ -614,9 +632,9 @@ INT getRE()
 		}
 		if (status == 1)
 		{
-			// Âú
-			clearline++; // ĞĞ+1
-			// ´ËĞĞ¹±Ï×·½¿éÊı
+			// æ»¡
+			clearline++; // è¡Œ+1
+			// æ­¤è¡Œè´¡çŒ®æ–¹å—æ•°
 			for (int j = 0 ; j < 4 ; j++)
 			{
 				if (algoTetris.positions[j].x == i)
@@ -627,29 +645,29 @@ INT getRE()
 		}
 		else 
 		{
-			// ¿Õ
+			// ç©º
 			break;
 		}
 	}
 	return clearline * cells;
 } 
-// ĞĞ±ä»¯ÂÊÆÀ·Ö
+// è¡Œå˜åŒ–ç‡è¯„åˆ†
 INT getRT() 
 {
-	// TODO ¿ÉÒÔÓÅ»¯£¬Óöµ½¿ÕĞĞ£¬ÒÔÉÏĞĞÖ±½ÓÃ¿ĞĞ+2
+	// TODO å¯ä»¥ä¼˜åŒ–ï¼Œé‡åˆ°ç©ºè¡Œï¼Œä»¥ä¸Šè¡Œç›´æ¥æ¯è¡Œ+2
 	int lineChane = 0, lastStatus;
 	for (int i = PAINT_YNODE - 1; i >= 0; i--)
 	{
-		lastStatus = 1; // ×óÇ½±Ú×´Ì¬ÎªÓĞĞ§£¬µ±×÷´æÔÚÍ¼ĞÎ
+		lastStatus = 1; // å·¦å¢™å£çŠ¶æ€ä¸ºæœ‰æ•ˆï¼Œå½“ä½œå­˜åœ¨å›¾å½¢
 		for (int j = 0;j < GAME_XNODE; j++)
 		{
-			// ÓëÉÏÒ»¸ö¸ñ×Ó²»Í¬
+			// ä¸ä¸Šä¸€ä¸ªæ ¼å­ä¸åŒ
 			if (!(lastStatus * algoGrid[i][j]) && lastStatus != algoGrid[i][j])
 			{
 				lineChane++;
 				lastStatus = algoGrid[i][j];
 			}
-			// µ±Ç°ĞĞ×îºóÒ»¸ö½ÚµãÎª¿Õ
+			// å½“å‰è¡Œæœ€åä¸€ä¸ªèŠ‚ç‚¹ä¸ºç©º
 			if (j == (GAME_XNODE - 1) && algoGrid[i][j] == 0)
 			{
 				lineChane++;
@@ -658,22 +676,22 @@ INT getRT()
 	}
 	return lineChane;
 }  
-// ÁĞ±ä»¯ÂÊÆÀ·Ö
+// åˆ—å˜åŒ–ç‡è¯„åˆ†
 INT getCT() 
 {
 	int colChane = 0, lastStatus;
 	for (int i = 0; i < GAME_XNODE; i++)
 	{
-		lastStatus = 1; // ×óÇ½±Ú×´Ì¬ÎªÓĞĞ§£¬µ±×÷´æÔÚÍ¼ĞÎ
+		lastStatus = 1; // å·¦å¢™å£çŠ¶æ€ä¸ºæœ‰æ•ˆï¼Œå½“ä½œå­˜åœ¨å›¾å½¢
 		for (int j = 0;j < PAINT_YNODE; j++)
 		{
-			// ÓëÉÏÒ»¸ö¸ñ×Ó²»Í¬
+			// ä¸ä¸Šä¸€ä¸ªæ ¼å­ä¸åŒ
 			if (!(lastStatus * algoGrid[j][i]) && lastStatus != algoGrid[j][i])
 			{
 				colChane++;
 				lastStatus = algoGrid[j][i];
 			}
-			// µ±Ç°ĞĞ×îºóÒ»¸ö½ÚµãÎª¿Õ
+			// å½“å‰è¡Œæœ€åä¸€ä¸ªèŠ‚ç‚¹ä¸ºç©º
 			if (j == (PAINT_YNODE - 1) && algoGrid[j][i] == 0)
 			{
 				colChane++;
@@ -682,11 +700,11 @@ INT getCT()
 	}
 	return colChane;
 }  
-// ¿Õ¶´ÊıÆÀ·Ö
+// ç©ºæ´æ•°è¯„åˆ†
 INT getNH() 
 {
 	int holes = 0;
-	bool holeFlag = false; // ÊÇ·ñ¿ÉÒÔ¿ªÊ¼¼ÆËã¿Õ¶´
+	bool holeFlag = false; // æ˜¯å¦å¯ä»¥å¼€å§‹è®¡ç®—ç©ºæ´
 	for (int i = 0; i < GAME_XNODE; i++)
 	{
 		holeFlag = false;
@@ -710,10 +728,10 @@ INT getNH()
 	}
 	return holes;
 }  
-// ¾®ÉîÆÀ·Ö
+// äº•æ·±è¯„åˆ†
 INT getWS() 
 {
-	// TODO: ¾®ÉîÇó½â²»¾«È·
+	// TODO: äº•æ·±æ±‚è§£ä¸ç²¾ç¡®
 	int wells = 0;
 	int center, left, right;
 	for (int i = 0; i < PAINT_YNODE; i++)
@@ -738,7 +756,7 @@ INT getWS()
 			{
 				right = 1;
 			}
-			// ÊÇ·ñÎª¾®
+			// æ˜¯å¦ä¸ºäº•
 			if (left && right && !center)
 			{
 				for (int k = i; k < PAINT_YNODE;k ++)
