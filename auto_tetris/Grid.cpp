@@ -1,102 +1,68 @@
-#include "stdafx.h"
+#include <vector>
 #include "Grid.h"
 
-Grid::Grid() {};
-Grid::Grid(int row, int col)
-{
-	init(row,col);
-};
-VOID Grid::init(int row, int col)
-{
-	grid.clear();
-	for (int i = 0; i < row; i++)
-	{
-		ROWSPAN row(col);
-		grid.push_back(row);
-	}
-}
-Grid::~Grid() {};
-// ÖØÔØÏÂ±êÔËËã
-ROWSPAN & Grid::operator [](int index)
-{
-	return grid[index];
-}
-// ¸ù¾İÍ¼ĞÎÎ»ÖÃÅĞ¶Ïµ±Ç°Î»ÖÃÊÇ·ñ±»Õ¼ÓÃ
-BOOL Grid::isExist(Tetris tetris)
-{
-	for (int i = 0; i < 4; i++)
-	{
-		// ½ÚµãÒÑ¾­±»Õ¼ÓÃ
-		if (grid[tetris.positions[i].x][tetris.positions[i].y] > 0)
-		{
-			return true;
-		}
-	}
-	return false;
-}
-// ½«µ±Ç°Í¼ĞÎ×ø±êÌí¼Ó½øÍø¸ñ
-void Grid::addCurTerisToGrid(Tetris tetris)
-{
-	for (int i = 0; i < 4; i++)
-	{
-		grid[tetris.positions[i].x][tetris.positions[i].y] = tetris.color;
-	}
-}
-int Grid::lineStatus(int i )
-{
-	ROWSPAN::iterator it = grid[i].begin();
-	while (it < grid[i].end() - 1)
-	{
-		// ÏàÁÚÁ½¸öÖµÒ»¸öÎª0 Ò»¸ö´óÓÚÁã£¬¼´Ò»¸öÓĞ½ÚµãÒ»¸öÎŞ½Úµã
-		if (!(*it * *(it + 1)) && *it != *(it + 1))
-		{
-			return 0;
-		}
-		// ÕûĞĞÖµÏàµÈ
-		if (it == grid[i].end() - 2)
-		{
-			// ¶¼ÓĞ½Úµã
-			if (*it > 0)
-			{
-				return 1;
-			}
-			// ¶¼ÎŞ½Úµã
-			return -1;
-		}
-		it++;
-	}
-}
-int Grid::clearLine()
-{
-	int  status , clearline = 0;
-	ROWSPAN row(10);
-	int size = grid.size();
-	for (int i = size -1; i >= 0 ; i--)
-	{
-		status = lineStatus(i);
-		if (status == 0)
-		{
-			continue;
-		}
-		if (status == 1)
-		{
-			// Âú
-			grid.erase(grid.begin() + i); // É¾³ıµ±Ç°ĞĞ
-			grid.insert(grid.begin(),row);
-			clearline++;
-			i++; // ÈÔÈ»¼ì²é´ËĞĞ
-		}
-		else 
-		{
-			// ¿Õ
-			break;
-		}
-	}
-	return clearline;
-}
+// å‡è®¾ ROWSPAN æ˜¯ std::vector<int>
+typedef std::vector<int> ROWSPAN;
 
-Grid & Grid::operator=(const Grid & row)
-{
-	grid = row.grid;
-	return *this;
-}
+class Grid {
+private:
+    std::vector<ROWSPAN> grid;
+
+public:
+    Grid() {}
+    Grid(int row, int col) : grid(row, ROWSPAN(col, 0)) {}
+    void init(int row, int col) {
+        grid = std::vector<ROWSPAN>(row, ROWSPAN(col, 0));
+    }
+    ROWSPAN& operator[](int index) {
+        return grid[index];
+    }
+    bool isExist(const Tetris& tetris) {
+        for (int i = 0; i < 4; i++) {
+            if (tetris.positions[i].x >= 0 && tetris.positions[i].y >= 0 &&
+                tetris.positions[i].x < grid.size() && tetris.positions[i].y < grid[0].size() &&
+                grid[tetris.positions[i].x][tetris.positions[i].y] > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+    void addCurTerisToGrid(const Tetris& tetris) {
+        for (int i = 0; i < 4; i++) {
+            if (tetris.positions[i].x >= 0 && tetris.positions[i].y >= 0 &&
+                tetris.positions[i].x < grid.size() && tetris.positions[i].y < grid[0].size()) {
+                grid[tetris.positions[i].x][tetris.positions[i].y] = tetris.color;
+            }
+        }
+    }
+    int lineStatus(int i) {
+        bool isFull = true;
+        for (int cell : grid[i]) {
+            if (cell == 0) {
+                isFull = false;
+                break;
+            }
+        }
+        return isFull ? 1 : 0;
+    }
+    int clearLine() {
+        int clearline = 0;
+        for (int i = grid.size() - 1; i >= 0; i--) {
+            int status = lineStatus(i);
+            if (status == 1) {
+                grid.erase(grid.begin() + i);
+                grid.insert(grid.begin(), ROWSPAN(grid[0].size(), 0));
+                clearline++;
+                i++; // æ£€æŸ¥æ–°æ’å…¥çš„è¡Œ
+            }
+        }
+        return clearline;
+    }
+    Grid& operator=(const Grid& other) {
+        if (this != &other) {
+            grid = other.grid;
+        }
+        return *this;
+    }
+    ~Grid() {}
+};
